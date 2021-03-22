@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>demo2</title>
+  <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+  <div class="container">
+    <div class="box">
+      <div class="resultBox" @click="ifShowDownBox($event)">
+        <div class="result">
+          <p v-for="item in checkedNames" :key="item">
+            <span>{{ item }}</span>
+            <span v-bind:id="item" @click="deleteItem($event)" class="close">
+          </p>
+        </div>
+      </div>
+      <div class="searchBox" v-if="isShowDownBox">
+        <div class="searchInputBox">
+          <input type="text" v-model="searchValue" @input="search" placeholder="搜索">
+        </div>
+        <div class="downBox">
+          <ul>
+            <li v-for="item in filterList" :key="item">
+              <input type="checkbox" v-bind:value="item" v-model="checkedNames">
+              <label v-bind:for="item">{{ item }}</label>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="index.js"></script>
+</body>
+
+</html>
